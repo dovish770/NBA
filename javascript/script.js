@@ -31,7 +31,6 @@ let form = document.querySelector(`form`);
 let selectPlayer = document.querySelector(`#select-player`);
 let table = document.querySelector(`table`);
 let th = document.querySelector(`#header-table`);
-let myTeamPlayers = [];
 let playersFromSearch = [];
 function submitSearchForm(e) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40,7 +39,12 @@ function submitSearchForm(e) {
         let result = yield fetchPlayers(request);
         if (result) {
             playersFromSearch = result;
-            showResultsOnTable();
+            if (playersFromSearch.length === 0) {
+                alert('No players found! \nPlease try a different search settings');
+            }
+            else {
+                showResultsOnTable();
+            }
         }
     });
 }
@@ -61,7 +65,7 @@ function fetchPlayers(request) {
             headers: { "Content-Type": "application/json", }
         });
         if (!response.ok) {
-            console.error(response);
+            alert(`Player was not found! \nPlease try a different search settings`);
             return null;
         }
         else {
@@ -90,11 +94,11 @@ function addRow(player) {
     const td3P = document.createElement('td');
     td3P.innerText = player.ThreeP;
     const tdActions = document.createElement('td');
-    tdActions.append(createAction(player));
+    tdActions.append(createButton(player));
     tr.append(tdPlayer, tdPosition, tdPoints, tdFG, td3P, tdActions, tdActions);
     table.appendChild(tr);
 }
-function createAction(player) {
+function createButton(player) {
     let name = player.Player.split(" ");
     const btnAdd = document.createElement('button');
     btnAdd.innerHTML = `Add ${name[0]} Td Current Team`;
@@ -104,10 +108,10 @@ function createAction(player) {
 function addToTeam(player) {
     let pName = document.createElement(`h4`);
     pName.innerText = player.Player;
-    let p2P = document.createElement(`p`);
-    p2P.innerText = `Three Percent: ${player.ThreeP}%`;
-    let p3P = document.createElement(`p`);
-    p3P.innerText = `Two Percent: ${player.TwoP}%`;
+    let p2Points = document.createElement(`p`);
+    p2Points.innerText = `Three Percent: ${player.ThreeP}%`;
+    let p3Points = document.createElement(`p`);
+    p3Points.innerText = `Two Percent: ${player.TwoP}%`;
     let pPoints = document.createElement(`p`);
     pPoints.innerText = `Points: ${player.Points}`;
     let tempDiv = positions.find(div => div.classList[1] == player.Position);
@@ -115,8 +119,7 @@ function addToTeam(player) {
         tempDiv.innerHTML = "";
         let tempH3 = h3s.find(h3 => h3.id.toLocaleLowerCase() == player.Position.toLowerCase());
         if (tempH3) {
-            console.log(13);
-            tempDiv.append(tempH3, pName, p3P, p2P, pPoints);
+            tempDiv.append(tempH3, pName, p3Points, p2Points, pPoints);
         }
     }
 }
@@ -131,20 +134,15 @@ function createPlayer(rawPlayer) {
     return newPlayer;
 }
 function changeDisplayOfSpanTP() {
-    totalPointsSpan.innerText = totalPointsRange.value;
+    totalPointsSpan.innerText = totalPointsRange.value + ` (TP)`;
 }
 function changeDisplayOfSpanFP() {
-    fgSpan.innerText = fgRange.value;
+    fgSpan.innerText = fgRange.value + `% (FP)`;
 }
 function changeDisplayOfSpan3P() {
-    threePointsSpan.innerText = threePointsRange.value;
+    threePointsSpan.innerText = threePointsRange.value + `% (3P)`;
 }
 totalPointsRange.addEventListener(`input`, changeDisplayOfSpanTP);
 fgRange.addEventListener(`input`, changeDisplayOfSpanFP);
 threePointsRange.addEventListener(`input`, changeDisplayOfSpan3P);
 form.addEventListener(`submit`, submitSearchForm);
-// function spamUpdate(){
-//     console.log(threePointsRange.value)
-//     threepointsSpam.innerHTML = threePointsRange.value;
-// }
-// threePointsRange.addEventListener(`change`, spamUpdate)
