@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>NBA FANTASY 2014-2024</header>
+    <h2>My Fantasy Team</h2>
+    <div id="my-team-container">
+        <div id="point-guard" class="players">
+            <h3>Point Guard</h3>
+        </div>
+        <div id="shooting-guard" class="players">
+            <h3>Shooting Guard</h3>
+        </div>
+        <div id="small-forward" class="players">
+            <h3>Small Forward</h3>
+        </div>
+        <div id="power-forward" class="players">
+            <h3>Power Forward</h3>
+        </div>
+        <div id="center" class="players">
+            <h3>Center</h3>
+        </div>
+    </div>
+
+    <h2>NBA Players Serach</h2>
+
+    <div id="search-and-table-container">
+        <form id="search-form">
+            <select id="select-player" class="search-inputs">
+                <option value="PG">PG</option>
+                <option value="SG">SG</option>
+                <option value="SF">SF</option>
+                <option value="PF">PF</option>
+                <option value="C">C</option>
+            </select>
+            <div class="range-container">
+                <span class="range-value" id="total-points-span">0</span>
+                <input type="range" id="total-points-range" min="0" max="20000" class="search-inputs">
+            </div>
+            <div class="range-container">
+                <span class="range-value" id="fg-span">0</span>
+                <input type="range" id="fg-range" min="0" max="100" class="search-inputs">
+            </div>
+            <div class="range-container">
+                <span class="range-value" id="three-points-span">0</span>
+                <input type="range" id="three-points-range" min="0" max="100" class="search-inputs" step="1">
+            </div> 
+            <input type="submit" value="Search Player">
+        </form>
+        
+    </div>
+
+
+    <script src="javascript/script.js"></script>
+</body>
+</html>
