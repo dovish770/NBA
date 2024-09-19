@@ -10,24 +10,24 @@
     <header>NBA FANTASY 2014-2024</header>
     <h2>My Fantasy Team</h2>
     <div id="my-team-container">
-        <div id="point-guard" class="players">
-            <h3>Point Guard</h3>
+        <div class="players PG">
+            <h3 id="PG">Point Guard</h3>
         </div>
-        <div id="shooting-guard" class="players">
-            <h3>Shooting Guard</h3>
+        <div class="players SG">
+            <h3 id="SG">Shooting Guard</h3>
         </div>
-        <div id="small-forward" class="players">
-            <h3>Small Forward</h3>
+        <div class="players SF">
+            <h3 id="SF">Small Forward</h3>
         </div>
-        <div id="power-forward" class="players">
-            <h3>Power Forward</h3>
+        <div class="players PF">
+            <h3 id="PF">Power Forward</h3>
         </div>
-        <div id="center" class="players">
-            <h3>Center</h3>
+        <div class="players C">
+            <h3 id="C">Center</h3>
         </div>
     </div>
 
-    <h2>NBA Players Serach</h2>
+    <h2>NBA Players Search</h2>
 
     <div id="search-and-table-container">
         <form id="search-form">
@@ -39,20 +39,29 @@
                 <option value="C">C</option>
             </select>
             <div class="range-container">
-                <span class="range-value" id="total-points-span">0</span>
+                <span class="range-value" id="total-points-span">Total points</span>
                 <input type="range" id="total-points-range" min="0" max="20000" class="search-inputs">
             </div>
             <div class="range-container">
-                <span class="range-value" id="fg-span">0</span>
+                <span class="range-value" id="fg-span">Two Points</span>
                 <input type="range" id="fg-range" min="0" max="100" class="search-inputs">
             </div>
             <div class="range-container">
-                <span class="range-value" id="three-points-span">0</span>
+                <span class="range-value" id="three-points-span">Three Points</span>
                 <input type="range" id="three-points-range" min="0" max="100" class="search-inputs" step="1">
             </div> 
             <input type="submit" value="Search Player">
         </form>
-        
+        <table>
+            <tr id="header-table">
+                <th>Player</th>
+                <th>Position</th>
+                <th>Points</th>
+                <th>FG%</th>
+                <th>3P%</th>
+                <th>Action</th>
+            </tr>
+        </table>
     </div>
 
 
